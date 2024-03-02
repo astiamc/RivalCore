@@ -67,7 +67,8 @@ public class DarkZoneMeteorsListener implements Listener {
         for (String location : Locations.getConfig().getStringList("Locations")) {
             try {
                 spawnLocations.add(getLocationFromString(location));
-            } catch (Exception e) {
+            }
+            catch (Exception e) {
                 /* lol frick you this is just so that the plugin doesn't stop */
             }
         }
@@ -164,15 +165,6 @@ public class DarkZoneMeteorsListener implements Listener {
         return new Location(world, x, y, z);
     }
 
-    private List<Location> getLocationsFromStringList(List<String> stringList) {
-        ArrayList<Location> out = new ArrayList<>();
-        for (String str : stringList) {
-            out.add(getLocationFromString(str));
-        }
-
-        return out;
-    }
-
     public static void startMeteorsThread() {
         load();
         for (String msg : Main.getInstance().getConfig().getStringList("darkzone-meteor-msg")) {
@@ -259,5 +251,14 @@ public class DarkZoneMeteorsListener implements Listener {
 
     public static List<Location> getSpawnLocations() {
         return spawnLocations;
+    }
+
+    private List<Location> getLocationsFromStringList(List<String> stringList) {
+        ArrayList<Location> out = new ArrayList<>();
+        for (String str : stringList) {
+            out.add(getLocationFromString(str));
+        }
+
+        return out;
     }
 }

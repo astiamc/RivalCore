@@ -1,18 +1,18 @@
 name: RivalCore
 main: net.strokkur.Main
 version: 1.0
-authors: [Rival Development, Strokkur24]
+authors: [ Rival Development, Strokkur24 ]
 depend:
   - PlaceholderAPI
   - Vault
 commands:
   ads:
-    aliases: [adban]
+    aliases: [ adban ]
   gg:
-    alisases: [ggwave]
+    alisases: [ ggwave ]
   donation:
-    aliases: [donate]
+    aliases: [ donate ]
   help:
-    aliases: [help]
+    aliases: [ help ]
   meteor:
-    alises: [meteors]
+    alises: [ meteors ]

@@ -8,8 +8,8 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 
 public class HelpCommand implements CommandExecutor {
-    DarkZoneMeteorsListener DarkZoneMeteorsListener;
     private final Main plugin = Main.getInstance();
+    DarkZoneMeteorsListener DarkZoneMeteorsListener;
 
     public HelpCommand() {
         DarkZoneMeteorsListener = new DarkZoneMeteorsListener();

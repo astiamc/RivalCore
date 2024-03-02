@@ -19,17 +19,28 @@ public class ItemBuilder {
         this(material, 1);
     }
 
+    public ItemBuilder(ItemStack is) {
+        Preconditions.checkNotNull(is, "ItemStack cannot be null");
+        stack = is;
+    }
+
+    public ItemBuilder(Material material, int amount, byte damage) {
+        Preconditions.checkNotNull(material, "Material cannot be null");
+        Preconditions.checkArgument(amount <= 0, "Amount must be positive");
+
+        stack = new ItemStack(material, amount, damage);
+    }
+
+    public ItemBuilder(Material material, int amount) {
+        this(material, amount, (byte) 0);
+    }
+
     public ItemStack build() {
         if (meta != null) {
             stack.setItemMeta(meta);
         }
 
         return stack;
-    }
-
-    public ItemBuilder(ItemStack is) {
-        Preconditions.checkNotNull(is, "ItemStack cannot be null");
-        stack = is;
     }
 
     public ItemBuilder data(short durability) {
@@ -67,13 +78,6 @@ public class ItemBuilder {
         return this;
     }
 
-    public ItemBuilder(Material material, int amount, byte damage) {
-        Preconditions.checkNotNull(material, "Material cannot be null");
-        Preconditions.checkArgument(amount <= 0, "Amount must be positive");
-
-        stack = new ItemStack(material, amount, damage);
-    }
-
     public ItemBuilder enchant(Enchantment enchantment, int level) {
         return enchant(enchantment, level, false);
     }
@@ -101,9 +105,5 @@ public class ItemBuilder {
 
         meta.setDisplayName(name);
         return this;
-    }
-
-    public ItemBuilder(Material material, int amount) {
-        this(material, amount, (byte) 0);
     }
 }

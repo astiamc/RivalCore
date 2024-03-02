@@ -8,13 +8,13 @@ fixes:
   welcome-message: true
   death-messages: true
 no-permission-msg:
- - '&b&lServerName &8» &7You do not have access to that command.'
+  - '&b&lServerName &8» &7You do not have access to that command.'
 dont-spam: "&cPlease don't spam."
 ads-usage:
- - '&b&lServerName &8» &7Usage &f/ads <player>'
+  - '&b&lServerName &8» &7Usage &f/ads <player>'
 ads-ban-command: "ban %player% Advertisment"
 ads-chat:
- - '&b&lServerName &8» &bChat has been cleared.'
+  - '&b&lServerName &8» &bChat has been cleared.'
 darkzone-exit:
   world: "world"
   x: 209
@@ -48,7 +48,7 @@ darkzone-meteorite: "&b&lDarkZone &8» &7You have discovered a &bMeteorite"
 darkzone-meteor-scrap-full: "&cYour inventory is full!"
 darkzone-time-message: '&c&lMETEORS &8» &7The next &fMeteors &7are falling in &c{time}&7 at &f/darkzone'
 darkzone-usage:
-- '&c&lCobraPvP &8» &7Possible uses: &f/meteor time'
+  - '&c&lCobraPvP &8» &7Possible uses: &f/meteor time'
 # - GG Wave Configuration
 gg-start: "&b&l*&f&l*&b&l* &b&lGGWAVE HAS BEGUN! &b&l*&f&l*&b&l*"
 gg-end: "&c&l*&f&l*&c&l* &c&lGG WAVE HAS ENDED &c&l*&f&l*&c&l*"

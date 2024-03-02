@@ -30,6 +30,24 @@ import java.util.ArrayList;
 public class DarkZoneListener implements Listener {
     private final Main plugin = Main.getInstance();
 
+    public static ItemStack getMeteorite(int amount) {
+        ItemStack out = new ItemStack(Material.INK_SACK);
+        out.setDurability((short) 12);
+        out.addUnsafeEnchantment(Enchantment.DURABILITY, 10);
+        out.setAmount(amount);
+        ItemMeta meta = out.getItemMeta();
+        meta.setDisplayName(CC.translate(Config.getConfig().getString("darkzone-meteorite-name")));
+
+        ArrayList<String> lore = new ArrayList<>();
+        for (String lorestring : Config.getConfig().getStringList("darkzone-meteorite-lore")) {
+            lore.add(ChatColor.translateAlternateColorCodes('&', lorestring));
+        }
+
+        meta.setLore(lore);
+        out.setItemMeta(meta);
+        return out;
+    }
+
     @EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
     public void onBlockBreak333(BlockDamageEvent e) {
         Player p = e.getPlayer();
@@ -182,24 +200,6 @@ public class DarkZoneListener implements Listener {
             }
         }
 
-    }
-
-    public static ItemStack getMeteorite(int amount) {
-        ItemStack out = new ItemStack(Material.INK_SACK);
-        out.setDurability((short) 12);
-        out.addUnsafeEnchantment(Enchantment.DURABILITY, 10);
-        out.setAmount(amount);
-        ItemMeta meta = out.getItemMeta();
-        meta.setDisplayName(CC.translate(Config.getConfig().getString("darkzone-meteorite-name")));
-
-        ArrayList<String> lore = new ArrayList<>();
-        for (String lorestring : Config.getConfig().getStringList("darkzone-meteorite-lore")) {
-            lore.add(ChatColor.translateAlternateColorCodes('&', lorestring));
-        }
-
-        meta.setLore(lore);
-        out.setItemMeta(meta);
-        return out;
     }
 
     @EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
