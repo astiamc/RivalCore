@@ -40,7 +40,6 @@ public class Main extends JavaPlugin {
    public long time;
    DarkZoneMeteorsListener DarkZoneMeteorsListener;
    public Logger log = this.getLogger();
-   private static int[] someIntegerValues;
 
    public long getTime() {
       return this.time;
@@ -81,8 +80,8 @@ public class Main extends JavaPlugin {
          me.rival.dev.listener.DarkZoneMeteorsListener.load();
          // TODO Fix this
          Bukkit.getScheduler().runTaskTimerAsynchronously(this,
-                 (long)(Config.getConfig().getInt("darkzone-meteor-time") * someIntegerValues[0]),
-                 (long)(Config.getConfig().getInt("darkzone-meteor-time") * someIntegerValues[0]));
+                 (long)(Config.getConfig().getInt("darkzone-meteor-time") * 50L),
+                 (long)(Config.getConfig().getInt("darkzone-meteor-time") * 50L));
 
       }
 
