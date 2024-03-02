@@ -1,6 +1,6 @@
 name: RivalCore
-main: me.rival.dev.Main
-version: 1.0-FINAL
+main: net.strokkur.Main
+version: 1.0
 authors: [Rival Development, Strokkur24]
 depend:
   - PlaceholderAPI
