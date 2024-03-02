@@ -8,29 +8,26 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 
 public class GGChatListener implements Listener {
-   // $FF: synthetic field
    private final Main plugin;
 
-   public GGChatListener(Main llllllIIlllllII) {
-      llllllIIlllllIl.plugin = llllllIIlllllII;
+   public GGChatListener(Main main) {
+      plugin = main;
    }
 
-   private static int llIl(long var0, long var2) {
-      long var4;
-      return (var4 = var0 - var2) == 0L ? 0 : (var4 < 0L ? -1 : 1);
+   private static int compare(long v1, long v2) {
+      return Long.compare(v1 - v2, 0L);
    }
 
-   @EventHandler(
-      priority = EventPriority.LOW
-   )
-   public void onChat(AsyncPlayerChatEvent llllllIIlllIIlI) {
-      if (llllllIIlllIIlI.getMessage().equalsIgnoreCase("GG") && llIl(llllllIIlllIlll.plugin.getTimeL(), System.currentTimeMillis()) >= 0) {
-         List llllllIIlllIlIl = llllllIIlllIlll.plugin.getGGs();
-         if (!llllllIIlllIlIl.isEmpty()) {
-            String llllllIIlllIlII = (String)llllllIIlllIlIl.get(llllllIIlllIlll.plugin.getRandom().nextInt(llllllIIlllIlIl.size()));
-            llllllIIlllIIlI.setMessage(CC.translate(llllllIIlllIlII));
-         }
+   @EventHandler(priority = EventPriority.LOW)
+   public void onChat(AsyncPlayerChatEvent e) {
+      if (!(e.getMessage().equalsIgnoreCase("GG") && compare(plugin.getTime(), System.currentTimeMillis()) >= 0)) {
+         return;
       }
 
+      List<String> ggs = plugin.getGGs();
+      if (!ggs.isEmpty()) {
+         String someMessage = ggs.get(plugin.getRandom().nextInt(ggs.size()));
+         e.setMessage(CC.translate(someMessage));
+      }
    }
 }

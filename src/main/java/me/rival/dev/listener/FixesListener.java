@@ -1,6 +1,5 @@
 package me.rival.dev.listener;
 
-import java.util.ArrayList;
 import java.util.List;
 import me.rival.dev.Main;
 import org.bukkit.entity.Blaze;
@@ -16,100 +15,62 @@ import org.bukkit.event.entity.EntityTeleportEvent;
 import org.bukkit.event.entity.EntityDamageEvent.DamageCause;
 
 public class FixesListener implements Listener {
-   // $FF: synthetic field
-   private final List<DamageCause> damage;
-   // $FF: synthetic field
-   private Main plugin;
-   // $FF: synthetic field
-   private static final int[] lIIlI;
+   private final List<DamageCause> damage = List.of(DamageCause.LAVA, DamageCause.FIRE,
+           DamageCause.FIRE_TICK, DamageCause.BLOCK_EXPLOSION, DamageCause.ENTITY_EXPLOSION);
 
-   static {
-      lllI();
-   }
-
-   public FixesListener(Main llllllIIllIllII) {
-      llllllIIllIllIl.plugin = llllllIIllIllII;
-      (llllllIIllIllIl.damage = new ArrayList()).add(DamageCause.LAVA);
-      "".length();
-      llllllIIllIllIl.damage.add(DamageCause.FIRE);
-      "".length();
-      llllllIIllIllIl.damage.add(DamageCause.FIRE_TICK);
-      "".length();
-      llllllIIllIllIl.damage.add(DamageCause.BLOCK_EXPLOSION);
-      "".length();
-      llllllIIllIllIl.damage.add(DamageCause.ENTITY_EXPLOSION);
-      "".length();
-   }
-
-   private static void lllI() {
-      lIIlI = new int[2];
-      lIIlI[0] = " ".length();
-      lIIlI[1] = (36 ^ 0) & ~(46 ^ 10);
+   @EventHandler
+   public void onCreeperAntiGlitch(EntityDamageEvent e) {
+      if (e.getEntity().getType().equals(EntityType.CREEPER) && (e.getCause().equals(DamageCause.DROWNING) || e.getCause().equals(DamageCause.SUFFOCATION))) {
+         e.getEntity().remove();
+      }
    }
 
    @EventHandler
-   public void onCreeperAntiGlitch(EntityDamageEvent llllllIIlIIlIII) {
-      if (llllllIIlIIlIII.getEntity().getType().equals(EntityType.CREEPER) && (llllllIIlIIlIII.getCause().equals(DamageCause.DROWNING) || llllllIIlIIlIII.getCause().equals(DamageCause.SUFFOCATION))) {
-         llllllIIlIIlIII.getEntity().remove();
+   public void onExplosionDamage(EntityDamageEvent e) {
+      if (e.getEntity() instanceof Player && isExplosion(e.getCause())) {
+         e.setCancelled(true);
       }
+   }
 
+   @EventHandler(priority = EventPriority.HIGHEST)
+   public void onEndermanTeleport(EntityTeleportEvent e) {
+      EntityType type = e.getEntityType();
+      if (type.equals(EntityType.ENDERMAN)) {
+         e.setCancelled(true);
+      }
+   }
+
+   private boolean damageCause(DamageCause e) {
+      return damage.contains(e);
+   }
+
+   private boolean isExplosion(DamageCause e) {
+      return e.equals(DamageCause.ENTITY_EXPLOSION) || e.equals(DamageCause.BLOCK_EXPLOSION);
    }
 
    @EventHandler
-   public void onExplosionDamage(EntityDamageEvent llllllIIlIIIlII) {
-      if (llllllIIlIIIlII.getEntity() instanceof Player && llllllIIlIIIIll.isExplosion(llllllIIlIIIlII.getCause())) {
-         llllllIIlIIIlII.setCancelled((boolean)lIIlI[0]);
-      }
-
-   }
-
-   @EventHandler(
-      priority = EventPriority.HIGHEST
-   )
-   public void onEndermanTeleport(EntityTeleportEvent llllllIIlIlIllI) {
-      int llllllIIlIlIIll = llllllIIlIlIllI.getEntityType();
-      if (llllllIIlIlIIll.equals(EntityType.ENDERMAN)) {
-         llllllIIlIlIllI.setCancelled((boolean)lIIlI[0]);
-      }
-
-   }
-
-   private boolean damageCause(DamageCause llllllIIllIIllI) {
-      return llllllIIllIIlIl.damage.contains(llllllIIllIIllI);
-   }
-
-   private boolean isExplosion(DamageCause llllllIIIlllllI) {
-      return (boolean)(!llllllIIIlllllI.equals(DamageCause.ENTITY_EXPLOSION) && !llllllIIIlllllI.equals(DamageCause.BLOCK_EXPLOSION) ? lIIlI[1] : lIIlI[0]);
-   }
-
-   @EventHandler
-   public void onWItherSpawn(EntitySpawnEvent llllllIIlIIllll) {
-      if (!llllllIIlIIllll.isCancelled()) {
-         String llllllIIlIIllII = llllllIIlIIllll.getEntityType();
-         if (llllllIIlIIllII.toString().toUpperCase().contains("WITHER")) {
-            llllllIIlIIllll.setCancelled((boolean)lIIlI[0]);
+   public void onWitherSpawn(EntitySpawnEvent e) {
+      if (!e.isCancelled()) {
+         EntityType type = e.getEntityType();
+         if (type.toString().toUpperCase().contains("WITHER")) {
+            e.setCancelled(true);
          }
-
       }
    }
 
-   @EventHandler(
-      priority = EventPriority.HIGHEST
-   )
-   public void antiitemburn(EntityDamageEvent llllllIIlIllllI) {
-      if (!llllllIIlIllllI.isCancelled() && llllllIIlIllllI.getEntity() instanceof Item && llllllIIllIIIIl.damageCause(llllllIIlIllllI.getCause())) {
-         llllllIIlIllllI.setCancelled((boolean)lIIlI[0]);
+   @EventHandler(priority = EventPriority.HIGHEST)
+   public void antiItemBurn(EntityDamageEvent e) {
+      if (!e.isCancelled() && e.getEntity() instanceof Item && damageCause(e.getCause())) {
+         e.setCancelled(true);
       }
-
    }
 
    @EventHandler
-   public void onBlazeWaterDamage(EntityDamageEvent llllllIIlIllIll) {
-      if (!llllllIIlIllIll.isCancelled()) {
-         if (llllllIIlIllIll.getEntity() instanceof Blaze && llllllIIlIllIll.getCause().equals(DamageCause.DROWNING)) {
-            llllllIIlIllIll.setCancelled((boolean)lIIlI[0]);
+   public void onBlazeWaterDamage(EntityDamageEvent e) {
+      if (!e.isCancelled()) {
+         if (e.getEntity() instanceof Blaze && e.getCause().equals(DamageCause.DROWNING)) {
+            e.setCancelled(true);
          }
-
       }
    }
 }
