@@ -1,26 +1,12 @@
 package me.rival.dev.listener;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
+
 import me.rival.dev.Main;
 import me.rival.dev.config.Config;
-import me.rival.dev.listener.DarkZoneMeteorsListener.1;
-import me.rival.dev.listener.DarkZoneMeteorsListener.10;
-import me.rival.dev.listener.DarkZoneMeteorsListener.11;
-import me.rival.dev.listener.DarkZoneMeteorsListener.12;
-import me.rival.dev.listener.DarkZoneMeteorsListener.13;
-import me.rival.dev.listener.DarkZoneMeteorsListener.2;
-import me.rival.dev.listener.DarkZoneMeteorsListener.3;
-import me.rival.dev.listener.DarkZoneMeteorsListener.4;
-import me.rival.dev.listener.DarkZoneMeteorsListener.5;
-import me.rival.dev.listener.DarkZoneMeteorsListener.6;
-import me.rival.dev.listener.DarkZoneMeteorsListener.7;
-import me.rival.dev.listener.DarkZoneMeteorsListener.8;
-import me.rival.dev.listener.DarkZoneMeteorsListener.9;
-import org.bukkit.Bukkit;
-import org.bukkit.Location;
-import org.bukkit.Material;
-import org.bukkit.World;
+import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Giant;
@@ -29,246 +15,252 @@ import org.bukkit.event.Listener;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
+import org.bukkit.scheduler.BukkitRunnable;
 
 public class DarkZoneMeteorsListener implements Listener {
-   // $FF: synthetic field
-   private static List<Location> spawnLocations;
-   // $FF: synthetic field
-   Main plugin;
-   // $FF: synthetic field
-   private static final int[] lllI;
+    private static final List<Location> spawnLocations = new ArrayList<>();
+    Main plugin;
 
-   public static void meteor(Location llllllIllIIlIlI) {
-      Location llllllIllIIlIIl;
-      if (lIlI(llllllIllIIlIlI.getX(), 0.0D) > 0) {
-         llllllIllIIlIIl = llllllIllIIlIlI.subtract(2.0D, 0.0D, -5.0D);
-         "".length();
-         if ("  ".length() <= ((118 ^ 105) & ~(118 ^ 105))) {
-            return;
-         }
-      } else {
-         llllllIllIIlIIl = llllllIllIIlIlI.add(2.0D, 0.0D, -5.0D);
-      }
+    public static void meteor(Location loc) {
+        Location newLoc;
 
-      String llllllIllIIlIII = Bukkit.getWorld(Config.getConfig().getString("darkzone-world-name"));
-      long llllllIllIIIlll = (Giant)llllllIllIIlIIl.getWorld().spawnEntity(llllllIllIIlIIl, EntityType.GIANT);
-      llllllIllIIIlll.setCustomNameVisible((boolean)lllI[0]);
-      llllllIllIIIlll.getEquipment().setItemInHand(new ItemStack(Material.TNT));
-      llllllIllIIIlll.addPotionEffect(new PotionEffect(PotionEffectType.INVISIBILITY, lllI[1], lllI[0]));
-      "".length();
-      Location llllllIllIIlIll = llllllIllIIIlll.getLocation();
-      (new 1(llllllIllIIlIll, llllllIllIIIlll)).runTaskLater(Main.getInstance(), 10L);
-      "".length();
-      (new 2(llllllIllIIlIll, llllllIllIIIlll)).runTaskLater(Main.getInstance(), 15L);
-      "".length();
-      (new 3(llllllIllIIlIll, llllllIllIIIlll)).runTaskLater(Main.getInstance(), 20L);
-      "".length();
-      (new 4(llllllIllIIlIll, llllllIllIIIlll)).runTaskLater(Main.getInstance(), 25L);
-      "".length();
-      (new 5(llllllIllIIlIll, llllllIllIIIlll)).runTaskLater(Main.getInstance(), 30L);
-      "".length();
-      (new 6(llllllIllIIlIll, llllllIllIIIlll)).runTaskLater(Main.getInstance(), 35L);
-      "".length();
-      (new 7(llllllIllIIlIll, llllllIllIIIlll)).runTaskLater(Main.getInstance(), 40L);
-      "".length();
-      (new 8(llllllIllIIlIll, llllllIllIIIlll)).runTaskLater(Main.getInstance(), 45L);
-      "".length();
-      (new 9(llllllIllIIlIlI, llllllIllIIIlll)).runTaskLater(Main.getInstance(), 50L);
-      "".length();
-   }
+        newLoc = compare(loc.getX()) > 0 ? loc.subtract(2.0D, 0.0D, -5.0D) : loc.add(2.0D, 0.0D, -5.0D);
 
-   public static void setLocations(Player llllllIlIIIIllI) {
-      ArrayList<String> llllllIlIIIIlIl = (ArrayList)Locations.getConfig().getStringList("Locations");
-      llllllIlIIIIlIl.add(getStringFromLocation(llllllIlIIIIllI.getLocation()));
-      "".length();
-      Locations.getConfig().set("Locations", llllllIlIIIIlIl);
-      Locations.getConfig().save();
-   }
+        World world = Bukkit.getWorld(Config.getConfig().getString("darkzone-world-name"));
+        Giant giant = (Giant) newLoc.getWorld().spawnEntity(newLoc, EntityType.GIANT);
+        giant.setCustomNameVisible(true);
+        giant.getEquipment().setItemInHand(new ItemStack(Material.TNT));
+        giant.addPotionEffect(new PotionEffect(PotionEffectType.INVISIBILITY, 360000, 0));
 
-   private static String getStringFromLocation(Location llllllIlIIIIIlI) {
-      return String.valueOf((new StringBuilder("World:")).append(llllllIlIIIIIlI.getWorld().getName()).append(", X:").append(llllllIlIIIIIlI.getBlockX()).append(", Y:").append(llllllIlIIIIIlI.getBlockY()).append(", Z:").append(llllllIlIIIIIlI.getBlockZ()));
-   }
+        Location giantLocation = giant.getLocation();
+        for (int i = 10; i <= 50; i += 5) {
+            run(giantLocation, giant, 10, (float) i / 10f);
+        }
 
-   public static void spawnMeteors() {
-      float llllllIllIlIllI = getSpawnLocations().iterator();
-      "".length();
-      if (-"  ".length() <= 0) {
-         Location llllllIllIllIII;
-         for(; llllllIllIlIllI.hasNext(); meteor(llllllIllIllIII)) {
-            llllllIllIllIII = (Location)llllllIllIlIllI.next();
-            if (!llllllIllIllIII.getChunk().isLoaded()) {
-               llllllIllIllIII.getChunk().load();
-               "".length();
+        endRun(loc, giant);
+    }
+
+    public static void setLocations(Player p) {
+        List<String> locationList = Locations.getConfig().getStringList("Locations");
+        locationList.add(getStringFromLocation(p.getLocation()));
+        Locations.getConfig().set("Locations", locationList);
+        Locations.getConfig().save();
+    }
+
+    private static String getStringFromLocation(Location loc) {
+        return "World:" + loc.getWorld().getName() + ", X:" + loc.getBlockX() + ", Y:" + loc.getBlockY() + ", Z:" + loc.getBlockZ();
+    }
+
+    public static void spawnMeteors() {
+        Iterator<Location> locationIterator = getSpawnLocations().iterator();
+        locationIterator.forEachRemaining(loc -> {
+            meteor(loc);
+            loc = locationIterator.next();
+            if (!loc.getChunk().isLoaded()) {
+                loc.getChunk().load();
             }
-         }
+        });
+    }
 
-      }
-   }
-
-   static {
-      lIIl();
-      spawnLocations = new ArrayList();
-   }
-
-   public static void load() {
-      spawnLocations.clear();
-      short llllllIllIlllII = Locations.getConfig().getStringList("Locations").iterator();
-      "".length();
-      if ((67 ^ 9 ^ 29 ^ 82) > 0) {
-         while(llllllIllIlllII.hasNext()) {
-            String llllllIllIlllIl = (String)llllllIllIlllII.next();
-
+    public static void load() {
+        spawnLocations.clear();
+        for (String location : Locations.getConfig().getStringList("Locations")) {
             try {
-               spawnLocations.add(getLocationFromString(llllllIllIlllIl));
-               "".length();
-            } catch (Exception var3) {
-               continue;
+                spawnLocations.add(getLocationFromString(location));
+            } catch (Exception e) {
+                /* lol frick you this is just so that the plugin doesn't stop */
+            }
+        }
+    }
+
+    private static int compare(double var0) {
+        return Double.compare(var0, 0d);
+    }
+
+    private static void run(Location loc, Giant giant, int delay, float blocks) {
+        new BukkitRunnable() {
+            @Override
+            public void run() {
+                loc.setY(loc.getBlockY() - blocks);
+                giant.teleport(loc);
+            }
+        }.runTaskLater(Main.getInstance(), delay);
+    }
+
+    private static void endRun(Location loc, Giant giant) {
+        new BukkitRunnable() {
+            @Override
+            public void run() {
+                loc.getWorld().playEffect(loc, Effect.EXPLOSION_HUGE, 200);
+                loc.getWorld().playSound(loc, Sound.EXPLODE, 5f, 5f);
+                var nearbyBlocksIterator = DarkZoneMeteorsListener.getNearbyBlocks(loc, 8).iterator();
+
+                loc.getWorld().playEffect(loc, Effect.EXPLOSION_HUGE, 200);
+                loc.getWorld().playSound(loc, Sound.EXPLODE, 5f, 5f);
+
+                while (nearbyBlocksIterator.hasNext()) {
+                    Block block = nearbyBlocksIterator.next();
+                    Chunk chunk = block.getChunk();
+                    if (block.getType().equals(Material.STONE)) {
+                        if (!chunk.isLoaded()) {
+                            chunk.load();
+                        }
+
+                        block.setType(Material.QUARTZ_ORE);
+                        block.getWorld().playEffect(block.getLocation(), Effect.EXPLOSION_HUGE, 200);
+                        runListener91(chunk, block);
+                    }
+                }
+
+                giant.remove();
+            }
+        }.runTaskLater(Main.getInstance(), 50);
+    }
+
+    private static void runListener91(Chunk chunk, Block block) {
+        new BukkitRunnable() {
+            @Override
+            public void run() {
+                if (!chunk.isLoaded()) {
+                    chunk.load();
+                }
+
+                block.setType(Material.STONE);
+                block.getWorld().playEffect(block.getLocation(), Effect.MOBSPAWNER_FLAMES, 200);
+            }
+        }.runTaskLater(Main.getInstance(), 600L);
+
+    }
+
+    public DarkZoneMeteorsListener(Main main) {
+        plugin = main;
+    }
+
+    private static Location getLocationFromString(String location) {
+        World world = Main.instance.getServer().getWorlds().get(0);
+        int x = 0;
+        int y = 0;
+        int z = 0;
+
+        String[] infos = location.toLowerCase().split(", ");
+        for (String info : infos) {
+            if (info.startsWith("world:")) {
+                world = Main.instance.getServer().getWorld(info.replace("world:", ""));
+                continue;
             }
 
-            "".length();
-            if (-"   ".length() > 0) {
-               return;
-            }
-         }
-
-      }
-   }
-
-   private static void lIIl() {
-      lllI = new int[3];
-      lllI[0] = " ".length();
-      lllI[1] = -191 & 360190;
-      lllI[2] = (83 + 104 - 79 + 22 ^ 58 + 116 - 65 + 64) & (165 ^ 189 ^ 64 ^ 119 ^ -" ".length());
-   }
-
-   private static int lIlI(double var0, double var2) {
-      double var4;
-      return (var4 = var0 - var2) == 0.0D ? 0 : (var4 < 0.0D ? -1 : 1);
-   }
-
-   public DarkZoneMeteorsListener(Main llllllIlllIIIlI) {
-      llllllIlllIIlIl.plugin = llllllIlllIIIlI;
-   }
-
-   private static Location getLocationFromString(String llllllIlIIlllll) {
-      World llllllIlIlIIlII = (World)Main.instance.getServer().getWorlds().get(lllI[2]);
-      byte llllllIlIIlllIl = lllI[2];
-      int llllllIlIIlllII = lllI[2];
-      int llllllIlIlIIIIl = lllI[2];
-      String[] llllllIlIIlIlll;
-      byte llllllIlIIllIII = (llllllIlIIlIlll = llllllIlIIlllll.toLowerCase().split(", ")).length;
-      short llllllIlIIllIIl = lllI[2];
-      "".length();
-      if (((104 ^ 79) & ~(23 ^ 48)) > "   ".length()) {
-         return null;
-      } else {
-         for(; llllllIlIIllIIl < llllllIlIIllIII; ++llllllIlIIllIIl) {
-            String llllllIlIIllIlI = llllllIlIIlIlll[llllllIlIIllIIl];
-            if (llllllIlIIllIlI.startsWith("world:")) {
-               llllllIlIlIIlII = Main.instance.getServer().getWorld(llllllIlIIllIlI.replace("world:", ""));
-               "".length();
-               if (-"   ".length() > 0) {
-                  return null;
-               }
-            } else if (llllllIlIIllIlI.startsWith("x:")) {
-               llllllIlIIlllIl = Integer.parseInt(llllllIlIIllIlI.replace("x:", ""));
-               "".length();
-               if ("  ".length() <= ((152 ^ 132) & ~(136 ^ 148))) {
-                  return null;
-               }
-            } else if (llllllIlIIllIlI.startsWith("y:")) {
-               llllllIlIIlllII = Integer.parseInt(llllllIlIIllIlI.replace("y:", ""));
-               "".length();
-               if (null != null) {
-                  return null;
-               }
-            } else if (llllllIlIIllIlI.startsWith("z:")) {
-               llllllIlIlIIIIl = Integer.parseInt(llllllIlIIllIlI.replace("z:", ""));
-            }
-         }
-
-         return new Location(llllllIlIlIIlII, (double)llllllIlIIlllIl, (double)llllllIlIIlllII, (double)llllllIlIlIIIIl);
-      }
-   }
-
-   private List<Location> getLocationsFromStringList(List<String> llllllIlIIIlllI) {
-      ArrayList<Location> llllllIlIIIllIl = new ArrayList();
-      short llllllIlIIIlIll = llllllIlIIIlllI.iterator();
-      "".length();
-      if ("  ".length() == 0) {
-         return null;
-      } else {
-         while(llllllIlIIIlIll.hasNext()) {
-            boolean llllllIlIIIllII = (String)llllllIlIIIlIll.next();
-            llllllIlIIIllIl.add(getLocationFromString(llllllIlIIIllII));
-            "".length();
-         }
-
-         return llllllIlIIIllIl;
-      }
-   }
-
-   public static void startMeteorsThread() {
-      load();
-      String llllllIlIlIllll = Main.getInstance().getConfig().getStringList("darkzone-meteor-msg").iterator();
-      "".length();
-      if ("  ".length() >= -" ".length()) {
-         while(llllllIlIlIllll.hasNext()) {
-            String llllllIlIllIIIl = (String)llllllIlIlIllll.next();
-            llllllIlIllIIIl = llllllIlIllIIIl.replace("%time%", "5");
-            Bukkit.broadcastMessage(CC.translate(llllllIlIllIIIl));
-            "".length();
-         }
-
-         (new 10()).runTaskLater(Main.getInstance(), 40L);
-         "".length();
-         (new 11()).runTaskLater(Main.getInstance(), 60L);
-         "".length();
-         (new 12()).runTaskLater(Main.getInstance(), 80L);
-         "".length();
-         (new 13()).runTaskLater(Main.getInstance(), 100L);
-         "".length();
-      }
-   }
-
-   public static List<Block> getNearbyBlocks(Location llllllIlIllllll, int llllllIlIlllllI) {
-      List<Block> llllllIlIllllIl = new ArrayList();
-      double llllllIlIllIllI = llllllIlIllllll.getBlockX() - llllllIlIlllllI;
-      "".length();
-      if ((76 ^ 73) == 0) {
-         return null;
-      } else {
-         while(llllllIlIllIllI <= llllllIlIllllll.getBlockX() + llllllIlIlllllI) {
-            boolean llllllIlIllIlIl = llllllIlIllllll.getBlockY() - llllllIlIlllllI;
-            "".length();
-            if (null != null) {
-               return null;
+            if (info.startsWith("x:")) {
+                x = Integer.parseInt(info.replace("x:", ""));
+                continue;
             }
 
-            while(llllllIlIllIlIl <= llllllIlIllllll.getBlockY() + llllllIlIlllllI) {
-               int llllllIlIlllIlI = llllllIlIllllll.getBlockZ() - llllllIlIlllllI;
-               "".length();
-               if (null != null) {
-                  return null;
-               }
-
-               while(llllllIlIlllIlI <= llllllIlIllllll.getBlockZ() + llllllIlIlllllI) {
-                  llllllIlIllllIl.add(llllllIlIllllll.getWorld().getBlockAt(llllllIlIllIllI, llllllIlIllIlIl, llllllIlIlllIlI));
-                  "".length();
-                  ++llllllIlIlllIlI;
-               }
-
-               ++llllllIlIllIlIl;
+            if (info.startsWith("y:")) {
+                y = Integer.parseInt(info.replace("y:", ""));
+                continue;
             }
 
-            ++llllllIlIllIllI;
-         }
+            if (info.startsWith("z:")) {
+                z = Integer.parseInt(info.replace("z:", ""));
+            }
+        }
 
-         return llllllIlIllllIl;
-      }
-   }
+        return new Location(world, x, y, z);
+    }
 
-   public static List<Location> getSpawnLocations() {
-      return spawnLocations;
-   }
+    private List<Location> getLocationsFromStringList(List<String> stringList) {
+        ArrayList<Location> out = new ArrayList<>();
+        for (String str : stringList) {
+            out.add(getLocationFromString(str));
+        }
+
+        return out;
+    }
+
+    public static void startMeteorsThread() {
+        load();
+        for (String msg : Main.getInstance().getConfig().getStringList("darkzone-meteor-msg")) {
+            msg = msg.replace("%time%", "5");
+            Bukkit.broadcastMessage(CC.translate(msg));
+        }
+
+        run10();
+        run11();
+        run12();
+        run13();
+    }
+
+    static void run10() {
+        new BukkitRunnable() {
+            @Override
+            public void run() {
+                for (String msg : Main.getInstance().getConfig().getStringList("darkzone-meteor-msg")) {
+                    msg = msg.replace("%time%", "3");
+                    Bukkit.broadcastMessage(CC.translate(msg));
+                }
+            }
+        }.runTaskLater(Main.getInstance(), 40);
+    }
+
+    static void run11() {
+        new BukkitRunnable() {
+            @Override
+            public void run() {
+                for (String msg : Main.getInstance().getConfig().getStringList("darkzone-meteor-msg")) {
+                    msg = msg.replace("%time%", "2");
+                    Bukkit.broadcastMessage(CC.translate(msg));
+                }
+            }
+        }.runTaskLater(Main.getInstance(), 60L);
+    }
+
+    static void run12() {
+        new BukkitRunnable() {
+            @Override
+            public void run() {
+                for (String msg : Main.getInstance().getConfig().getStringList("darkzone-meteor-msg")) {
+                    msg = msg.replace("%time%", "1");
+                    Bukkit.broadcastMessage(CC.translate(msg));
+                }
+            }
+        }.runTaskLater(Main.getInstance(), 80L);
+    }
+
+    static void run13() {
+        new BukkitRunnable() {
+            @Override
+            public void run() {
+                Config.getConfig().set("darkzone-meteor-nexttime", System.currentTimeMillis() + (Config.getConfig().getInt("darkzone-meteor-time") * 1000L));
+                Config.getConfig().save();
+                DarkZoneMeteorsListener.spawnMeteors();
+            }
+        }.runTaskLater(Main.getInstance(), 100L);
+    }
+
+    public static List<Block> getNearbyBlocks(Location loc, int radius) {
+        List<Block> out = new ArrayList<>();
+        int negativeX = loc.getBlockX() - radius;
+
+        while (negativeX <= loc.getBlockX() + radius) {
+
+            int negativeY = loc.getBlockY() - radius;
+            while (negativeY <= loc.getBlockY() + radius) {
+
+                int negativeZ = loc.getBlockZ() - radius;
+                while (negativeZ <= loc.getBlockZ() + radius) {
+                    out.add(loc.getWorld().getBlockAt(negativeX, negativeY, negativeZ));
+                    negativeZ++;
+                }
+
+                negativeY++;
+            }
+
+            negativeX++;
+        }
+
+        return out;
+    }
+
+    public static List<Location> getSpawnLocations() {
+        return spawnLocations;
+    }
 }

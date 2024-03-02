@@ -12,7 +12,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.LeatherArmorMeta;
 
 public class ItemBuilder {
-   private ItemStack stack;
+   private final ItemStack stack;
    private ItemMeta meta;
 
    public ItemBuilder(Material material) {
