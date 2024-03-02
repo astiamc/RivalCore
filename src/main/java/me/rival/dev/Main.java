@@ -98,7 +98,7 @@ public class Main extends JavaPlugin {
         Bukkit.getConsoleSender().sendMessage("");
         Bukkit.getConsoleSender().sendMessage("");
         Bukkit.getConsoleSender().sendMessage(CC.translate("&b(Rival Factions Core) &c- &aPlugin loading...."));
-        Bukkit.getConsoleSender().sendMessage(CC.translate("&b(Rival Factions Core) &c- &aMade by Azur#4386"));
+        Bukkit.getConsoleSender().sendMessage(CC.translate("&b(Rival Factions Core) &c- &aMade by Azur#4386 &8--- &6Modified by Strokkur24"));
         Bukkit.getConsoleSender().sendMessage("");
         Bukkit.getConsoleSender().sendMessage("");
         Bukkit.getConsoleSender().sendMessage("");

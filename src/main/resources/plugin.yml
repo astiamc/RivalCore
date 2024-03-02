@@ -1,7 +1,7 @@
 name: RivalCore
 main: me.rival.dev.Main
 version: 1.0-FINAL
-author: Rival Development
+authors: [Rival Development, Strokkur24]
 commands:
   ads:
     aliases: [adban]
