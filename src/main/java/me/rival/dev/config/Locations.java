@@ -10,6 +10,12 @@ public class Locations extends YamlConfiguration {
     private final File locationsFile;
     private final Main plugin = Main.getInstance();
 
+    public Locations() {
+        locationsFile = new File(plugin.getDataFolder(), "locations.yml");
+        saveDefault();
+        reload();
+    }
+
     public static Locations getConfig() {
         if (locations == null) {
             locations = new Locations();
@@ -25,12 +31,6 @@ public class Locations extends YamlConfiguration {
         catch (Exception e) {
             plugin.log.severe(e.getMessage());
         }
-    }
-
-    public Locations() {
-        locationsFile = new File(plugin.getDataFolder(), "locations.yml");
-        saveDefault();
-        reload();
     }
 
     public void save() {
