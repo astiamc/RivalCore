@@ -8,27 +8,23 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 
 public class WelcomeListener implements Listener {
-   Main plugin;
+    private final Main plugin = Main.getInstance();
 
-   @EventHandler
-   public void join(PlayerJoinEvent e) {
-      Player p = e.getPlayer();
+    @EventHandler
+    public void join(PlayerJoinEvent e) {
+        Player p = e.getPlayer();
 
-      // Clear chat
-      for (int i = 0; i < 150; i++) {
-         p.sendMessage("");
-      }
+        // Clear chat
+        for (int i = 0; i < 150; i++) {
+            p.sendMessage("");
+        }
 
-      // Print out welcome message
-      for (String i : plugin.getConfig().getStringList("Welcome-Message")) {
-         i = i.replace("{onlineCount}", Integer.toString(Bukkit.getOnlinePlayers().size()));
-         i = i.replace("{maxCount}", Integer.toString(Bukkit.getMaxPlayers()));
-         i = i.replace("&", "§");
-         e.getPlayer().sendMessage(i);
-      }
-   }
-
-   public WelcomeListener(Main main) {
-      plugin = main;
-   }
+        // Print out welcome message
+        for (String i : plugin.getConfig().getStringList("Welcome-Message")) {
+            i = i.replace("{onlineCount}", Integer.toString(Bukkit.getOnlinePlayers().size()));
+            i = i.replace("{maxCount}", Integer.toString(Bukkit.getMaxPlayers()));
+            i = i.replace("&", "§");
+            e.getPlayer().sendMessage(i);
+        }
+    }
 }

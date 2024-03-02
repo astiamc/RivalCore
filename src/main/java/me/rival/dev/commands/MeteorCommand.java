@@ -15,7 +15,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 public class MeteorCommand implements CommandExecutor {
-    Main plugin;
+    private final Main plugin = Main.getInstance();
 
     public static String timeAsString(long time) {
         String out = "";
@@ -68,10 +68,6 @@ public class MeteorCommand implements CommandExecutor {
 
     private static int compare(long var0, long var2) {
         return Long.compare(var0 - var2, 0);
-    }
-
-    public MeteorCommand(Main main) {
-        plugin = main;
     }
 
     public boolean onCommand(CommandSender sender, Command commmand, String alias, String[] args) {

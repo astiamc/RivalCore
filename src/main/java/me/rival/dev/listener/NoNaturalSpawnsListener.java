@@ -7,15 +7,12 @@ import org.bukkit.event.entity.CreatureSpawnEvent;
 import org.bukkit.event.entity.CreatureSpawnEvent.SpawnReason;
 
 public class NoNaturalSpawnsListener implements Listener {
-   Main plugin;
+    private final Main plugin = Main.getInstance();
 
-   @EventHandler
-   void onMobSpawn(CreatureSpawnEvent e) {
-      if (e.getSpawnReason().equals(SpawnReason.NATURAL)) {
-         e.setCancelled(true);
-      }
-   }
-   public NoNaturalSpawnsListener(Main main) {
-      plugin = main;
-   }
+    @EventHandler
+    void onMobSpawn(CreatureSpawnEvent e) {
+        if (e.getSpawnReason().equals(SpawnReason.NATURAL)) {
+            e.setCancelled(true);
+        }
+    }
 }

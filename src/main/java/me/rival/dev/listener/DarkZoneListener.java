@@ -26,7 +26,7 @@ import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scheduler.BukkitRunnable;
 
 public class DarkZoneListener implements Listener {
-    Main plugin;
+    private final Main plugin = Main.getInstance();
 
     @EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
     public void onBlockBreak333(BlockDamageEvent e) {
@@ -189,7 +189,7 @@ public class DarkZoneListener implements Listener {
         out.setAmount(amount);
         ItemMeta meta = out.getItemMeta();
         meta.setDisplayName(CC.translate(Config.getConfig().getString("darkzone-meteorite-name")));
-        
+
         ArrayList<String> lore = new ArrayList<>();
         for (String lorestring : Config.getConfig().getStringList("darkzone-meteorite-lore")) {
             lore.add(ChatColor.translateAlternateColorCodes('&', lorestring));
@@ -276,7 +276,8 @@ public class DarkZoneListener implements Listener {
                     p.sendMessage(CC.translate(plugin.getConfig().getString("darkzone-meteorite")));
                     p.sendMessage(CC.translate(plugin.getConfig().getString("darkzone-meteor-scrap-full")));
                 }
-            } else {
+            }
+            else {
                 itemStack1 = p.getEquipment().getItemInHand();
                 enchantmentLevel = itemStack1.getEnchantmentLevel(Enchantment.LOOT_BONUS_BLOCKS);
                 amount = 1;
@@ -348,7 +349,8 @@ public class DarkZoneListener implements Listener {
                     p.sendMessage(CC.translate(plugin.getConfig().getString("darkzone-meteor-scrap")));
                     p.sendMessage(CC.translate(plugin.getConfig().getString("darkzone-meteor-scrap-full")));
                 }
-            } else {
+            }
+            else {
                 if (Config.getConfig().getBoolean("mining-messages")) {
                     p.sendMessage(CC.translate(plugin.getConfig().getString("darkzone-meteor-scrap")));
                 }
@@ -369,9 +371,5 @@ public class DarkZoneListener implements Listener {
             }
         }
 
-    }
-
-    public DarkZoneListener(Main main) {
-        plugin = main;
     }
 }

@@ -11,11 +11,7 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 
 public class AdsCommand implements CommandExecutor {
-    Main plugin;
-
-    public AdsCommand(Main main) {
-        plugin = main;
-    }
+    private final Main plugin = Main.getInstance();
 
     public boolean onCommand(CommandSender sender, Command command, String alias, String[] args) {
         if (!command.getName().equalsIgnoreCase("ads")) {

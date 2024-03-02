@@ -6,15 +6,15 @@ import org.bukkit.configuration.file.YamlConfiguration;
 
 public class Config extends YamlConfiguration {
    private static Config config;
-   private final Main plugin = Main.getInstance();
+   private final Main plugin;
    private final File configFile;
 
    public void save() {
       try {
          super.save(configFile);
       }
-      catch (Exception var2) {
-         plugin.log.severe(var2.getMessage());
+      catch (Exception e) {
+         plugin.log.severe(e.getMessage());
       }
    }
 
@@ -24,13 +24,14 @@ public class Config extends YamlConfiguration {
 
    public static Config getConfig() {
       if (config == null) {
-         config = new Config();
+         config = new Config(Main.getInstance());
       }
 
       return config;
    }
 
-   public Config() {
+   public Config(Main instance) {
+      plugin = instance;
       configFile = new File(plugin.getDataFolder(), "config.yml");
       saveDefault();
       reload();
@@ -40,8 +41,8 @@ public class Config extends YamlConfiguration {
       try {
          super.load(configFile);
       }
-      catch (Exception var2) {
-         plugin.log.severe(var2.getMessage());
+      catch (Exception e) {
+         plugin.log.severe(e.getMessage());
       }
    }
 }

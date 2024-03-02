@@ -11,12 +11,8 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 
 public class AntiSpamListener implements Listener {
-    Main plugin;
+    private final Main plugin = Main.getInstance();
     Set<String> antispam = new HashSet<>();
-
-    public AntiSpamListener(Main main) {
-        plugin = main;
-    }
 
     @EventHandler
     public void onPlayerChat(AsyncPlayerChatEvent e) {

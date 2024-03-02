@@ -9,12 +9,9 @@ import org.bukkit.event.block.BlockFromToEvent;
 import org.junit.Ignore;
 
 public class AntiCobbleMonsterListener implements Listener {
-    Main plugin;
+    private final Main plugin = Main.getInstance();
     private final BlockFace[] faces = new BlockFace[]{BlockFace.SELF, BlockFace.UP, BlockFace.DOWN, BlockFace.NORTH, BlockFace.EAST, BlockFace.SOUTH, BlockFace.WEST};
 
-    public AntiCobbleMonsterListener(Main main) {
-        plugin = main;
-    }
 
     @EventHandler
     public void onFromTo(BlockFromToEvent e) {
@@ -30,14 +27,16 @@ public class AntiCobbleMonsterListener implements Listener {
         int out;
         if (id != 8 && id != 9) {
             out = 8;
-        } else {
+        }
+        else {
             out = 10;
         }
 
         int out2 = out;
         if (id != 8 && id != 9) {
             out = 9;
-        } else {
+        }
+        else {
             out = 11;
         }
 

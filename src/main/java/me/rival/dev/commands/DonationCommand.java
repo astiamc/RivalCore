@@ -11,7 +11,8 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 
 public class DonationCommand implements CommandExecutor {
-    Main plugin;
+    private final Main plugin = Main.getInstance();
+
 
     public boolean onCommand(CommandSender sender, Command command, String alias, String[] args) {
         if (!command.getName().equalsIgnoreCase("donation")) {
@@ -56,9 +57,5 @@ public class DonationCommand implements CommandExecutor {
 
         return true;
 
-    }
-
-    public DonationCommand(Main main) {
-        plugin = main;
     }
 }

@@ -1,46 +1,45 @@
 package me.rival.dev;
 
+import me.rival.dev.commands.*;
+import me.rival.dev.config.Config;
+import me.rival.dev.listener.*;
+import net.milkbowl.vault.economy.Economy;
+import org.bukkit.Bukkit;
+import org.bukkit.command.CommandExecutor;
+import org.bukkit.command.TabCompleter;
+import org.bukkit.event.Listener;
+import org.bukkit.plugin.RegisteredServiceProvider;
+import org.bukkit.plugin.java.JavaPlugin;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.logging.Logger;
 
-import me.rival.dev.commands.AdsCommand;
-import me.rival.dev.commands.DonationCommand;
-import me.rival.dev.commands.GGCommand;
-import me.rival.dev.commands.HelpCommand;
-import me.rival.dev.commands.MeteorCommand;
-import me.rival.dev.config.Config;
-import me.rival.dev.listener.AntiCobbleMonsterListener;
-import me.rival.dev.listener.AntiHopperCraftListener;
-import me.rival.dev.listener.AntiRegenListener;
-import me.rival.dev.listener.AntiWaterRedstoneListener;
-import me.rival.dev.listener.CC;
-import me.rival.dev.listener.DarkZoneListener;
-import me.rival.dev.listener.DarkZoneMeteorsListener;
-import me.rival.dev.listener.DeathMessageListener;
-import me.rival.dev.listener.EnderPearlCooldownListener;
-import me.rival.dev.listener.GGChatListener;
-import me.rival.dev.listener.IronGolemListener;
-import me.rival.dev.listener.Locations;
-import me.rival.dev.listener.NoNaturalSpawnsListener;
-import me.rival.dev.listener.PlaceholderHook;
-import me.rival.dev.listener.WelcomeListener;
-import me.rival.dev.listener.WorldBorderListener;
-import net.milkbowl.vault.economy.Economy;
-import org.bukkit.Bukkit;
-import org.bukkit.plugin.PluginManager;
-import org.bukkit.plugin.RegisteredServiceProvider;
-import org.bukkit.plugin.java.JavaPlugin;
-
 public class Main extends JavaPlugin {
     public static Main instance;
-    public Random random;
     public static Economy economy;
+    public Random random;
     public List<String> ggList;
     public long time;
-    DarkZoneMeteorsListener DarkZoneMeteorsListener;
     public Logger log = this.getLogger();
+
+    public Main() {
+        instance = this;
+
+        new DarkZoneMeteorsListener();
+        this.time = 0L;
+        this.ggList = new ArrayList<>();
+        this.random = new Random();
+    }
+
+    public static Economy getEconomy() {
+        return economy;
+    }
+
+    public static Main getInstance() {
+        return instance;
+    }
 
     public long getTime() {
         return this.time;
@@ -50,19 +49,8 @@ public class Main extends JavaPlugin {
         this.time = newTime;
     }
 
-    public static Economy getEconomy() {
-        return economy;
-    }
-
     public Random getRandom() {
         return random;
-    }
-
-    public Main() {
-        this.DarkZoneMeteorsListener = new DarkZoneMeteorsListener(instance);
-        this.time = 0L;
-        this.ggList = new ArrayList<>();
-        this.random = new Random();
     }
 
     public List<String> getGGs() {
@@ -77,14 +65,13 @@ public class Main extends JavaPlugin {
         }
 
         if (Config.getConfig().getBoolean("darkzone-enabled")) {
-            me.rival.dev.listener.DarkZoneMeteorsListener.load();
+            DarkZoneMeteorsListener.load();
 
             Bukkit.getScheduler().runTaskTimerAsynchronously(this, () -> {
-                me.rival.dev.listener.DarkZoneMeteorsListener.startMeteorsThread();
+                DarkZoneMeteorsListener.startMeteorsThread();
                 Config.getConfig().set("darkzone-meteor-nexttime", System.currentTimeMillis() + (Config.getConfig().getInt("darkzone-meteor-time") * 20L));
                 Config.getConfig().save();
             }, Config.getConfig().getInt("darkzone-meteor-time") * 50L, Config.getConfig().getInt("darkzone-meteor-time") * 50L);
-
         }
 
         this.loadGGs();
@@ -102,57 +89,50 @@ public class Main extends JavaPlugin {
         Bukkit.getConsoleSender().sendMessage("");
         Bukkit.getConsoleSender().sendMessage("");
         Bukkit.getConsoleSender().sendMessage("");
-        instance = this;
 
-        PluginManager pluginManager = this.getServer().getPluginManager();
-        if (Config.getConfig().getBoolean("darkzone-enabled")) {
-            pluginManager.registerEvents(new DarkZoneListener(this), this);
-        }
+        event(new GGChatListener());
+        event(new WorldBorderListener());
+        event(new NoNaturalSpawnsListener());
+        event(new AntiHopperCraftListener());
+        event(new IronGolemListener());
 
-        pluginManager.registerEvents(new GGChatListener(this), this);
-        pluginManager.registerEvents(new WorldBorderListener(this), this);
-        pluginManager.registerEvents(new NoNaturalSpawnsListener(this), this);
-        pluginManager.registerEvents(new AntiHopperCraftListener(this), this);
-        if (Config.getConfig().getBoolean("anti-water-redstone")) {
-            pluginManager.registerEvents(new AntiWaterRedstoneListener(this), this);
-        }
+        event(new DarkZoneMeteorsListener(), "darkzone-enabled");
+        event(new AntiWaterRedstoneListener(), "anti-water-redstone");
+        event(new DeathMessageListener(), "death-messages");
+        event(new WelcomeListener(), "welcome-message");
+        event(new EnderPearlCooldownListener(), "enderpearl-cooldown");
+        event(new AntiCobbleMonsterListener(), "anticobblemonster");
+        event(new AntiRegenListener(), "regenwalls-and-spawnerprot");
+        event(new DarkZoneMeteorsListener(), "darkzone-enabled");
 
-        if (Config.getConfig().getBoolean("death-messages")) {
-            pluginManager.registerEvents(new DeathMessageListener(this), this);
-        }
+        command("help", new HelpCommand());
+        command("ads", new AdsCommand());
+        command("donation", new DonationCommand());
+        command("meteor", new MeteorCommand());
+        command("gg", new GGCommand());
 
-        pluginManager.registerEvents(new IronGolemListener(this), this);
-        if (Config.getConfig().getBoolean("welcome-message")) {
-            pluginManager.registerEvents(new WelcomeListener(this), this);
-        }
-
-        if (Config.getConfig().getBoolean("enderpearl-cooldown")) {
-            pluginManager.registerEvents(new EnderPearlCooldownListener(this), this);
-        }
-
-        if (Config.getConfig().getBoolean("anticobblemonster")) {
-            pluginManager.registerEvents(new AntiCobbleMonsterListener(this), this);
-        }
-
-        if (Config.getConfig().getBoolean("regenwalls-and-spawnerprot")) {
-            pluginManager.registerEvents(new AntiRegenListener(this), this);
-        }
-
-        if (Config.getConfig().getBoolean("darkzone-enabled")) {
-            pluginManager.registerEvents(new DarkZoneMeteorsListener(this), this);
-        }
-
-        this.getCommand("help").setExecutor(new HelpCommand(this));
-        this.getCommand("ads").setExecutor(new AdsCommand(this));
-        this.getCommand("donation").setExecutor(new DonationCommand(this));
-        this.getCommand("meteor").setExecutor(new MeteorCommand(this));
-        this.getCommand("gg").setExecutor(new GGCommand(this));
         Bukkit.getConsoleSender().sendMessage(CC.translate("&b(Rival Factions Core) &c- &aPlugin Enabled"));
-
     }
 
-    public static Main getInstance() {
-        return instance;
+    private void event(Listener e, String configValue) {
+        if (Config.getConfig().getBoolean(configValue)) {
+            getServer().getPluginManager().registerEvents(e, this);
+        }
+    }
+
+    private void event(Listener e) {
+        getServer().getPluginManager().registerEvents(e, this);
+    }
+
+    private void command(String command, CommandExecutor exec, TabCompleter tabCompleter) {
+        getCommand(command).setExecutor(exec);
+        if (tabCompleter != null) {
+            getCommand(command).setTabCompleter(tabCompleter);
+        }
+    }
+
+    private void command(String command, CommandExecutor exec) {
+        command(command, exec, null);
     }
 
     public void loadGGs() {

@@ -11,7 +11,7 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 
 public class GGCommand implements CommandExecutor {
-    Main plugin;
+    private final Main plugin = Main.getInstance();
 
     public boolean onCommand(CommandSender sender, Command command, String alias, String[] args) {
         if (!command.getName().equalsIgnoreCase("gg")) {
@@ -48,9 +48,5 @@ public class GGCommand implements CommandExecutor {
         }
 
         return true;
-    }
-
-    public GGCommand(Main main) {
-        plugin = main;
     }
 }

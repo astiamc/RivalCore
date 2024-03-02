@@ -21,11 +21,41 @@ import org.bukkit.event.entity.ExplosionPrimeEvent;
 import org.bukkit.event.player.PlayerBucketEmptyEvent;
 
 public class AntiRegenListener implements Listener {
-    Main plugin;
+    private final Main plugin = Main.getInstance();
     private final int radius;
     public boolean lava;
     public boolean water;
     public List<Block> blocklist;
+
+    public AntiRegenListener() {
+        water = true;
+        lava = true;
+        radius = 3;
+        blocklist = new ArrayList<>();
+    }
+
+    public static List<Block> getNearbyBlocks(Location loc, int radius) {
+        List<Block> out = new ArrayList<>();
+        int xPos = loc.getBlockX() - radius;
+        while (xPos <= loc.getBlockX() + radius) {
+            int yPos = loc.getBlockY() - radius;
+
+            while (yPos <= loc.getBlockY() + radius) {
+                int zPos = loc.getBlockZ() - radius;
+
+                while (zPos <= loc.getBlockZ() + radius) {
+                    out.add(loc.getWorld().getBlockAt(xPos, yPos, zPos));
+                    ++zPos;
+                }
+
+                ++yPos;
+            }
+
+            ++xPos;
+        }
+
+        return out;
+    }
 
     @EventHandler
     public void onPlayerBucketEmpty(PlayerBucketEmptyEvent e) {
@@ -74,29 +104,6 @@ public class AntiRegenListener implements Listener {
                 });
             }
         }
-    }
-
-    public static List<Block> getNearbyBlocks(Location loc, int radius) {
-        List<Block> out = new ArrayList<>();
-        int xPos = loc.getBlockX() - radius;
-        while (xPos <= loc.getBlockX() + radius) {
-            int yPos = loc.getBlockY() - radius;
-
-            while (yPos <= loc.getBlockY() + radius) {
-                int zPos = loc.getBlockZ() - radius;
-
-                while (zPos <= loc.getBlockZ() + radius) {
-                    out.add(loc.getWorld().getBlockAt(xPos, yPos, zPos));
-                    ++zPos;
-                }
-
-                ++yPos;
-            }
-
-            ++xPos;
-        }
-
-        return out;
     }
 
     @EventHandler
@@ -171,14 +178,6 @@ public class AntiRegenListener implements Listener {
             }
         }
 
-    }
-
-    public AntiRegenListener(Main main) {
-        water = true;
-        lava = true;
-        radius = 3;
-        plugin = main;
-        blocklist = new ArrayList<>();
     }
 
     @EventHandler

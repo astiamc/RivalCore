@@ -8,17 +8,14 @@ import org.bukkit.event.entity.CreatureSpawnEvent;
 import org.bukkit.event.entity.CreatureSpawnEvent.SpawnReason;
 
 public class IronGolemListener implements Listener {
-   Main plugin;
-   public IronGolemListener(Main main) {
-      plugin = main;
-   }
+    private final Main plugin = Main.getInstance();
 
-   @EventHandler
-   public void BurnGolem(CreatureSpawnEvent e) {
-      if (e.getSpawnReason() == SpawnReason.SPAWNER && e.getEntityType() == EntityType.IRON_GOLEM) {
-         e.getEntity().setHealth(2.0D);
-         e.getEntity().setFireTicks(10000);
-      }
+    @EventHandler
+    public void BurnGolem(CreatureSpawnEvent e) {
+        if (e.getSpawnReason() == SpawnReason.SPAWNER && e.getEntityType() == EntityType.IRON_GOLEM) {
+            e.getEntity().setHealth(2.0D);
+            e.getEntity().setFireTicks(10000);
+        }
 
-   }
+    }
 }

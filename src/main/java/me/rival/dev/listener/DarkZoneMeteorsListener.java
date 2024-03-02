@@ -19,7 +19,7 @@ import org.bukkit.scheduler.BukkitRunnable;
 
 public class DarkZoneMeteorsListener implements Listener {
     private static final List<Location> spawnLocations = new ArrayList<>();
-    Main plugin;
+    private final Main plugin = Main.getInstance();
 
     public static void meteor(Location loc) {
         Location newLoc;
@@ -132,12 +132,9 @@ public class DarkZoneMeteorsListener implements Listener {
 
     }
 
-    public DarkZoneMeteorsListener(Main main) {
-        plugin = main;
-    }
 
     private static Location getLocationFromString(String location) {
-        World world = Main.instance.getServer().getWorlds().get(0);
+        World world = Main.getInstance().getServer().getWorlds().get(0);
         int x = 0;
         int y = 0;
         int z = 0;
@@ -145,7 +142,7 @@ public class DarkZoneMeteorsListener implements Listener {
         String[] infos = location.toLowerCase().split(", ");
         for (String info : infos) {
             if (info.startsWith("world:")) {
-                world = Main.instance.getServer().getWorld(info.replace("world:", ""));
+                world = Main.getInstance().getServer().getWorld(info.replace("world:", ""));
                 continue;
             }
 

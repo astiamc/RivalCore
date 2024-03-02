@@ -12,11 +12,10 @@ import java.util.Iterator;
 
 public class HelpCommand implements CommandExecutor {
     DarkZoneMeteorsListener DarkZoneMeteorsListener;
-    Main plugin;
+    private final Main plugin = Main.getInstance();
 
-    public HelpCommand(Main main) {
-        DarkZoneMeteorsListener = new DarkZoneMeteorsListener(main);
-        plugin = main;
+    public HelpCommand() {
+        DarkZoneMeteorsListener = new DarkZoneMeteorsListener();
     }
 
     @Override
