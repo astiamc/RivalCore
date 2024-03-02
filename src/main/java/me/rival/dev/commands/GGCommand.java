@@ -3,7 +3,7 @@ package me.rival.dev.commands;
 import java.util.Iterator;
 
 import me.rival.dev.Main;
-import me.rival.dev.listener.CC;
+import me.rival.dev.util.CC;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;

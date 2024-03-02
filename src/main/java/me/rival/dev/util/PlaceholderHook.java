@@ -1,4 +1,4 @@
-package me.rival.dev.listener;
+package me.rival.dev.util;
 
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
 import me.rival.dev.commands.MeteorCommand;

@@ -2,7 +2,10 @@ package me.rival.dev;
 
 import me.rival.dev.commands.*;
 import me.rival.dev.config.Config;
+import me.rival.dev.config.Locations;
 import me.rival.dev.listener.*;
+import me.rival.dev.util.CC;
+import me.rival.dev.util.PlaceholderHook;
 import net.milkbowl.vault.economy.Economy;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandExecutor;

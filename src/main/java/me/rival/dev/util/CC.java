@@ -1,4 +1,4 @@
-package me.rival.dev.listener;
+package me.rival.dev.util;
 
 import java.util.ArrayList;
 import java.util.Iterator;

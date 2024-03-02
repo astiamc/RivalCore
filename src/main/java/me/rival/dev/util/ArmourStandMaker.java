@@ -1,4 +1,4 @@
-package me.rival.dev.listener;
+package me.rival.dev.util;
 
 import me.rival.dev.Main;
 import org.bukkit.Location;

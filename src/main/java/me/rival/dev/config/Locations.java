@@ -1,4 +1,4 @@
-package me.rival.dev.listener;
+package me.rival.dev.config;
 
 import java.io.File;
 

@@ -1,6 +1,6 @@
 package me.rival.dev.listener;
 
-import me.rival.dev.Main;
+import me.rival.dev.util.CC;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.WorldBorder;

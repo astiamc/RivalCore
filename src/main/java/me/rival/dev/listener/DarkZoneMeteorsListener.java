@@ -6,6 +6,8 @@ import java.util.List;
 
 import me.rival.dev.Main;
 import me.rival.dev.config.Config;
+import me.rival.dev.config.Locations;
+import me.rival.dev.util.CC;
 import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.entity.EntityType;

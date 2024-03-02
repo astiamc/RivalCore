@@ -1,4 +1,4 @@
-package me.rival.dev.listener;
+package me.rival.dev.util;
 
 import com.google.common.base.Preconditions;
 

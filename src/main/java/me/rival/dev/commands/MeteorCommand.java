@@ -1,13 +1,12 @@
 package me.rival.dev.commands;
 
-import java.util.Iterator;
 import java.util.concurrent.TimeUnit;
 
 import me.rival.dev.Main;
 import me.rival.dev.config.Config;
-import me.rival.dev.listener.CC;
+import me.rival.dev.util.CC;
 import me.rival.dev.listener.DarkZoneMeteorsListener;
-import me.rival.dev.listener.Locations;
+import me.rival.dev.config.Locations;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
