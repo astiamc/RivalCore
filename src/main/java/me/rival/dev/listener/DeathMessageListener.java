@@ -4,7 +4,6 @@ import me.rival.dev.Main;
 import org.bukkit.Sound;
 import org.bukkit.Statistic;
 import org.bukkit.entity.Arrow;
-import org.bukkit.entity.Damageable;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;

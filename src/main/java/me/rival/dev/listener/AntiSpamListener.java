@@ -9,7 +9,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
-import org.bukkit.plugin.Plugin;
 
 public class AntiSpamListener implements Listener {
     Main plugin;
@@ -34,8 +33,6 @@ public class AntiSpamListener implements Listener {
         }
 
         antispam.add(player.getName());
-        Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(Main.getInstance(), () -> {
-            antispam.remove(player.getName());
-        }, plugin.time);
+        Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(Main.getInstance(), () -> antispam.remove(player.getName()), plugin.time);
     }
 }

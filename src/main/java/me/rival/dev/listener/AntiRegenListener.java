@@ -22,7 +22,7 @@ import org.bukkit.event.player.PlayerBucketEmptyEvent;
 
 public class AntiRegenListener implements Listener {
     Main plugin;
-    private int radius;
+    private final int radius;
     public boolean lava;
     public boolean water;
     public List<Block> blocklist;

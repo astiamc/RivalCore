@@ -1,7 +1,6 @@
 package me.rival.dev.listener;
 
 import java.util.List;
-import me.rival.dev.Main;
 import org.bukkit.entity.Blaze;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Item;

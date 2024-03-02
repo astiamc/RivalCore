@@ -26,7 +26,7 @@ public class DarkZoneMeteorsListener implements Listener {
 
         newLoc = compare(loc.getX()) > 0 ? loc.subtract(2.0D, 0.0D, -5.0D) : loc.add(2.0D, 0.0D, -5.0D);
 
-        World world = Bukkit.getWorld(Config.getConfig().getString("darkzone-world-name"));
+        World world = Bukkit.getWorld(Config.getConfig().getString("darkzone-world-name")); // ?
         Giant giant = (Giant) newLoc.getWorld().spawnEntity(newLoc, EntityType.GIANT);
         giant.setCustomNameVisible(true);
         giant.getEquipment().setItemInHand(new ItemStack(Material.TNT));
@@ -34,7 +34,7 @@ public class DarkZoneMeteorsListener implements Listener {
 
         Location giantLocation = giant.getLocation();
         for (int i = 10; i <= 50; i += 5) {
-            run(giantLocation, giant, 10, (float) i / 10f);
+            run(giantLocation, giant, i, (float) i / 10f);
         }
 
         endRun(loc, giant);

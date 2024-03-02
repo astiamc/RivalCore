@@ -12,7 +12,7 @@ import org.bukkit.event.player.PlayerInteractEvent;
 
 public class EnderPearlCooldownListener implements Listener {
    Main plugin;
-   private final HashMap<UUID, Long> cooldown = new HashMap();
+   private final HashMap<UUID, Long> cooldown = new HashMap<>();
 
    public EnderPearlCooldownListener(Main main) {
       plugin = main;

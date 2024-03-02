@@ -1,7 +1,7 @@
 package me.rival.dev.listener;
 
 import com.google.common.base.Preconditions;
-import java.util.ArrayList;
+
 import java.util.Arrays;
 import java.util.List;
 import org.bukkit.Color;
@@ -52,13 +52,12 @@ public class ItemBuilder {
       return this;
    }
 
-   public ItemBuilder lore(String... lore) {
+   public void lore(String... lore) {
       if (meta == null) {
          meta = stack.getItemMeta();
       }
 
       meta.setLore(Arrays.asList(lore));
-      return this;
    }
 
    public ItemBuilder setColor(Color color) {
