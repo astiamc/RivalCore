@@ -21,14 +21,12 @@ import org.bukkit.scheduler.BukkitRunnable;
 
 public class DarkZoneMeteorsListener implements Listener {
     private static final List<Location> spawnLocations = new ArrayList<>();
-    private final Main plugin = Main.getInstance();
 
     public static void meteor(Location loc) {
         Location newLoc;
 
         newLoc = compare(loc.getX()) > 0 ? loc.subtract(2.0D, 0.0D, -5.0D) : loc.add(2.0D, 0.0D, -5.0D);
 
-        World world = Bukkit.getWorld(Config.getConfig().getString("darkzone-world-name")); // ?
         Giant giant = (Giant) newLoc.getWorld().spawnEntity(newLoc, EntityType.GIANT);
         giant.setCustomNameVisible(true);
         giant.getEquipment().setItemInHand(new ItemStack(Material.TNT));
