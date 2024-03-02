@@ -9,6 +9,7 @@ RivalCore is a simple plugin for controlling certain events in Minecraft servers
 ## Dependencies
 Just like the original RivalCore2, `RivalCore3` requires [Vault](https://www.spigotmc.org/resources/vault.34315/) and [PlaceholderAPI](https://www.spigotmc.org/resources/placeholderapi.6245/) to work properly. To reduce bugs this plugin should be used on a `Spigot 1.8.8` server as that is its native version.
 
+
 ```java
 /*
  * @author Strokkur24
