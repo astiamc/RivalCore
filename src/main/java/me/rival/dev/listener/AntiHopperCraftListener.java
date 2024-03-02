@@ -10,17 +10,14 @@ import org.bukkit.event.inventory.CraftItemEvent;
 import org.bukkit.event.inventory.FurnaceSmeltEvent;
 
 public class AntiHopperCraftListener implements Listener {
-   // $FF: synthetic field
    Main plugin;
-   // $FF: synthetic field
-   private static final int[] ll;
 
    @EventHandler(
       priority = EventPriority.HIGHEST
    )
-   public void onDarkZoneFix3(FurnaceSmeltEvent lllllllllIllIlI) {
-      if (lllllllllIllIlI.getResult().getType() == Material.NETHER_BRICK_ITEM) {
-         lllllllllIllIlI.setCancelled((boolean)ll[1]);
+   public void onDarkZoneFix3(FurnaceSmeltEvent e) {
+      if (e.getResult().getType() == Material.NETHER_BRICK_ITEM) {
+         e.setCancelled(true);
       }
 
    }
@@ -28,27 +25,27 @@ public class AntiHopperCraftListener implements Listener {
    @EventHandler(
       priority = EventPriority.HIGHEST
    )
-   public void onCraft(CraftItemEvent lllllllllIlIlIl) {
-      Player lllllllllIlIlII = (Player)lllllllllIlIlIl.getWhoClicked();
-      if (lllllllllIlIlIl.getRecipe().getResult().getType() == Material.HOPPER) {
-         lllllllllIlIlIl.setCancelled((boolean)ll[1]);
-         lllllllllIlIlII.sendMessage(CC.translate(lllllllllIlIllI.plugin.getConfig().getString("Cannot-craft-hopper")));
+   public void onCraft(CraftItemEvent e) {
+      Player p = (Player)e.getWhoClicked();
+      if (e.getRecipe().getResult().getType() == Material.HOPPER) {
+         e.setCancelled(true);
+         p.sendMessage(CC.translate(plugin.getConfig().getString("Cannot-craft-hopper")));
       }
 
    }
 
-   public AntiHopperCraftListener(Main lllllllllllIIII) {
-      lllllllllllIIIl.plugin = lllllllllllIIII;
+   public AntiHopperCraftListener(Main main) {
+      plugin = main;
    }
 
    @EventHandler(
       priority = EventPriority.HIGHEST
    )
-   public void onDarkZoneFix2(CraftItemEvent llllllllllIIIlI) {
-      boolean lllllllllIllllI = (Player)llllllllllIIIlI.getWhoClicked();
-      if (llllllllllIIIlI.getRecipe().getResult().getType() == Material.INK_SACK && llllllllllIIIlI.getRecipe().getResult().getDurability() == ll[2]) {
-         llllllllllIIIlI.setCancelled((boolean)ll[1]);
-         lllllllllIllllI.sendMessage(CC.translate(llllllllllIIIII.plugin.getConfig().getString("Cannot-craft-hopper")));
+   public void onDarkZoneFix2(CraftItemEvent e) {
+      Player p = (Player)e.getWhoClicked();
+      if (e.getRecipe().getResult().getType() == Material.INK_SACK && e.getRecipe().getResult().getDurability() == 10) {
+         e.setCancelled(true);
+         p.sendMessage(CC.translate(plugin.getConfig().getString("Cannot-craft-hopper")));
       }
 
    }
@@ -56,23 +53,12 @@ public class AntiHopperCraftListener implements Listener {
    @EventHandler(
       priority = EventPriority.HIGHEST
    )
-   public void onDarkZoneFix1(CraftItemEvent llllllllllIlIll) {
-      long llllllllllIIlll = (Player)llllllllllIlIll.getWhoClicked();
-      if (llllllllllIlIll.getRecipe().getResult().getType() == Material.INK_SACK && llllllllllIlIll.getRecipe().getResult().getDurability() == ll[0]) {
-         llllllllllIlIll.setCancelled((boolean)ll[1]);
-         llllllllllIIlll.sendMessage(CC.translate(llllllllllIlIIl.plugin.getConfig().getString("Cannot-craft-hopper")));
+   public void onDarkZoneFix1(CraftItemEvent e) {
+      Player p = (Player) e.getWhoClicked();
+      if (e.getRecipe().getResult().getType() == Material.INK_SACK && e.getRecipe().getResult().getDurability() == 12) {
+         e.setCancelled(true);
+         p.sendMessage(CC.translate(plugin.getConfig().getString("Cannot-craft-hopper")));
       }
 
-   }
-
-   static {
-      I();
-   }
-
-   private static void I() {
-      ll = new int[3];
-      ll[0] = 79 ^ 31 ^ 154 ^ 198;
-      ll[1] = " ".length();
-      ll[2] = 107 + 142 - 92 + 15 ^ 21 + 86 - 89 + 148;
    }
 }

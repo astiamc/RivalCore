@@ -10,7 +10,7 @@ public class Config extends YamlConfiguration {
    // $FF: synthetic field
    private static Config config;
    // $FF: synthetic field
-   private Main plugin = (Main)Main.getPlugin(Main.class);
+   private final Main plugin = Main.getPlugin(Main.class);
    // $FF: synthetic field
    private File configFile;
 
@@ -24,7 +24,6 @@ public class Config extends YamlConfiguration {
 
       "".length();
       if (null == null) {
-         ;
       }
    }
 
@@ -52,7 +51,7 @@ public class Config extends YamlConfiguration {
 
    public void reload() {
       try {
-         super.load(lllllIIIlIlIIIl.configFile);
+         super.load(configFile);
       } catch (Exception var2) {
          var2.printStackTrace();
          return;
@@ -60,7 +59,6 @@ public class Config extends YamlConfiguration {
 
       "".length();
       if (null == null) {
-         ;
       }
    }
 

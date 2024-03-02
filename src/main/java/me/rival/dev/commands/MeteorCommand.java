@@ -32,43 +32,43 @@ public class MeteorCommand implements CommandExecutor {
       }
 
       if (lIIlIl(llllIlIlIlIlllI, 1L) > 0) {
-         llllIlIlIlIlIII = String.valueOf((new StringBuilder(String.valueOf(llllIlIlIlIlIII))).append(llllIlIlIlIlllI).append(" days "));
+         llllIlIlIlIlIII = String.valueOf(String.valueOf(llllIlIlIlIlIII) + llllIlIlIlIlllI + " days ");
          "".length();
          if ("  ".length() < "  ".length()) {
             return null;
          }
       } else if (lIIlIl(llllIlIlIlIlllI, 1L) == 0) {
-         llllIlIlIlIlIII = String.valueOf((new StringBuilder(String.valueOf(llllIlIlIlIlIII))).append(llllIlIlIlIlllI).append(" day "));
+         llllIlIlIlIlIII = String.valueOf(String.valueOf(llllIlIlIlIlIII) + llllIlIlIlIlllI + " day ");
       }
 
       if (lIIlIl(llllIlIlIlIllIl, 1L) > 0) {
-         llllIlIlIlIlIII = String.valueOf((new StringBuilder(String.valueOf(llllIlIlIlIlIII))).append(llllIlIlIlIllIl).append(" hours "));
+         llllIlIlIlIlIII = String.valueOf(String.valueOf(llllIlIlIlIlIII) + llllIlIlIlIllIl + " hours ");
          "".length();
          if ("   ".length() <= -" ".length()) {
             return null;
          }
       } else if (lIIlIl(llllIlIlIlIllIl, 1L) == 0) {
-         llllIlIlIlIlIII = String.valueOf((new StringBuilder(String.valueOf(llllIlIlIlIlIII))).append(llllIlIlIlIllIl).append(" hour "));
+         llllIlIlIlIlIII = String.valueOf(String.valueOf(llllIlIlIlIlIII) + llllIlIlIlIllIl + " hour ");
       }
 
       if (lIIlIl(llllIlIlIlIllII, 1L) > 0) {
-         llllIlIlIlIlIII = String.valueOf((new StringBuilder(String.valueOf(llllIlIlIlIlIII))).append(llllIlIlIlIllII).append(" minutes "));
+         llllIlIlIlIlIII = String.valueOf(String.valueOf(llllIlIlIlIlIII) + llllIlIlIlIllII + " minutes ");
          "".length();
          if ("   ".length() != "   ".length()) {
             return null;
          }
       } else if (lIIlIl(llllIlIlIlIllII, 1L) == 0) {
-         llllIlIlIlIlIII = String.valueOf((new StringBuilder(String.valueOf(llllIlIlIlIlIII))).append(llllIlIlIlIllII).append(" minute "));
+         llllIlIlIlIlIII = String.valueOf(String.valueOf(llllIlIlIlIlIII) + llllIlIlIlIllII + " minute ");
       }
 
       if (lIIlIl(llllIlIlIlIIlII, 1L) > 0) {
-         llllIlIlIlIlIII = String.valueOf((new StringBuilder(String.valueOf(llllIlIlIlIlIII))).append(llllIlIlIlIIlII).append(" seconds "));
+         llllIlIlIlIlIII = String.valueOf(String.valueOf(llllIlIlIlIlIII) + llllIlIlIlIIlII + " seconds ");
          "".length();
          if (((234 ^ 176) & ~(127 ^ 37)) < ((39 ^ 30) & ~(125 ^ 68))) {
             return null;
          }
       } else if (lIIlIl(llllIlIlIlIIlII, 1L) == 0) {
-         llllIlIlIlIlIII = String.valueOf((new StringBuilder(String.valueOf(llllIlIlIlIlIII))).append(llllIlIlIlIIlII).append(" second "));
+         llllIlIlIlIlIII = String.valueOf(String.valueOf(llllIlIlIlIlIII) + llllIlIlIlIIlII + " second ");
       }
 
       return llllIlIlIlIlIII;

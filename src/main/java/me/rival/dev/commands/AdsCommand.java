@@ -60,7 +60,7 @@ public class AdsCommand implements CommandExecutor {
                   llllIlllIllllll = llllIllllIIllIl.plugin.getConfig().getStringList("ads-chat").iterator();
                   "".length();
                   if (((162 ^ 156 ^ 68 ^ 37) & (50 + 157 - 22 + 49 ^ 154 + 143 - 138 + 22 ^ -" ".length())) >= " ".length()) {
-                     return (boolean)((127 ^ 81 ^ 246 ^ 145) & (189 + 146 - 236 + 99 ^ 12 + 72 - 0 + 59 ^ -" ".length()));
+                     return (boolean)((127 ^ 81 ^ 246 ^ 145) & (189 + 146 - 236 + 99 ^ 12 + 72 + 59 ^ -" ".length()));
                   } else {
                      while(llllIlllIllllll.hasNext()) {
                         llllIllllIIIlIl = (String)llllIlllIllllll.next();

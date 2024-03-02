@@ -26,9 +26,9 @@ public class HelpCommand implements CommandExecutor {
       lI();
    }
 
-   public HelpCommand(Main llllllllIlIIIII) {
-      llllllllIIlllll.DarkZoneMeteorsListener = new DarkZoneMeteorsListener(llllllllIIlllll.plugin);
-      llllllllIIlllll.plugin = llllllllIlIIIII;
+   public HelpCommand(Main main) {
+      DarkZoneMeteorsListener = new DarkZoneMeteorsListener(main);
+      plugin = main;
    }
 
    public boolean onCommand(CommandSender llllllllIIlIlIl, Command llllllllIIIllIl, String llllllllIIlIIll, String[] llllllllIIlIIlI) {
