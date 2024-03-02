@@ -1,0 +1,144 @@
+darkzone-enabled: true
+
+fixes:
+  regenwalls-and-spawnerprot: true
+  anticobblemonster: true
+  anti-water-redstone: true
+  enderpearl-cooldown: true
+  welcome-message: true
+  death-messages: true
+no-permission-msg:
+ - '&b&lServerName &8» &7You do not have access to that command.'
+dont-spam: "&cPlease don't spam."
+ads-usage:
+ - '&b&lServerName &8» &7Usage &f/ads <player>'
+ads-ban-command: "ban %player% Advertisment"
+ads-chat:
+ - '&b&lServerName &8» &bChat has been cleared.'
+darkzone-exit:
+  world: "world"
+  x: 209
+  y: 65
+  z: -0
+  yaw: -90
+  pitch: 1
+darkzone-world-name: "darkzone"
+darkzonegems:
+  enabled: true
+  max: 3
+  min: 1
+  message: "&a&l+ %amount% ✫ &7(Darkzone)"
+darkzone-leave:
+  - '&b&lDarkZone &8» &7You have exited the Dark Zone world.'
+#Time in Seconds.
+darkzone-meteor-time: 900
+darkzone-meteor-nexttime: 900
+darkzone-meteor-msg:
+  - ''
+  - '                          &c&l*&f&l*&c&l* &c&lMeteor Alert &c&l*&f&l*&c&l*'
+  - '           &7Meteors are hitting &cDarkZone &7in &f%time%s'
+  - ''
+mining-messages: true
+darkzone-meteor-uranium-name: "&a&lUranium"
+darkzone-meteor-scrap-name: "&c&lMeteor Scrap"
+darkzone-meteorite-name: "&b&lMeteorite"
+darkzone-meteor-uranium: "&b&lDarkZone &8» &7You have discovered &aUranium"
+darkzone-meteor-scrap: "&b&lDarkZone &8» &7You have discovered a &cMeteor Scrap"
+darkzone-meteorite: "&b&lDarkZone &8» &7You have discovered a &bMeteorite"
+darkzone-meteor-scrap-full: "&cYour inventory is full!"
+darkzone-time-message: '&c&lMETEORS &8» &7The next &fMeteors &7are falling in &c{time}&7 at &f/darkzone'
+darkzone-usage:
+- '&c&lCobraPvP &8» &7Possible uses: &f/meteor time'
+# - GG Wave Configuration
+gg-start: "&b&l*&f&l*&b&l* &b&lGGWAVE HAS BEGUN! &b&l*&f&l*&b&l*"
+gg-end: "&c&l*&f&l*&c&l* &c&lGG WAVE HAS ENDED &c&l*&f&l*&c&l*"
+gg-usage: "&b&lServerName &8» &7Usage &f/gg start"
+#Time in Seconds.
+gg-time: 10
+gg-list:
+  - '&a&lGG'
+  - '&b&lGG'
+  - '&c&lGG'
+  - '&d&lGG'
+  - '&e&lGG'
+  - '&f&lGG'
+  - '&f&k|&e&k|&f&k|&e&lG&6&lG&f&k|&e&k|&f&k|'
+  - '&f&k|&6&k|&f&k|&6&lG&e&lG&f&k|&6&k|&f&k|'
+  - '&b&k|&5&k|&b&k|&5&lG&d&lG&b&k|&5&k|&b&k|'
+  - '&b&k|&d&k|&b&k|&d&lG&3&lG&b&k|&d&k|&b&k|'
+  - '&f&k|&9&k|&f&k|&3&lG&9&lG&f&k|&9&k|&f&k|'
+  - '&f&k|&3&k|&f&k|&9&lG&3&lG&f&k|&3&k|&f&k|'
+  - '&f&k|&a&k|&f&k|&2&lG&a&lG&f&k|&a&k|&f&k|'
+  - '&f&k|&2&k|&f&k|&a&lG&2&lG&f&k|&2&k|&f&k|'
+  - '&f&k|&c&k|&f&k|&c&lG&4&lG&f&k|&c&k|&f&k|'
+  - '&f&k|&4&k|&f&k|&4&lG&c&lG&f&k|&4&k|&f&k|'
+  - '&f&k|&5&k|&f&k|&d&lG&b&lG&f&k|&5&k|&f&k|'
+  - '&f&k|&d&k|&f&k|&5&lG&d&lG&f&k|&d&k|&f&k|'
+  - '&1&lGG'
+  - '&2&lGG'
+  - '&3&lGG'
+  - '&4&lGG'
+  - '&5&lGG'
+  - '&6&lGG'
+  - '&7&lGG'
+  - '&8&lGG'
+  - '&9&lGG'
+  - '&a&lG&bG'
+  - '&b&lG&eG'
+  - '&c&lG&fG'
+  - '&d&lG&2G'
+  - '&e&lG&fG'
+  - '&f&lG&eG'
+  - '&e&lG&6&lG'
+  - '&b&lG&f&lG'
+  - '&d&lG&5&lG'
+  - '&c&lG&4&lG'
+  - '&b&lG&3&lG'
+  - '&a&lG&2&lG'
+  - '&1&lG&9&lG'
+  # Donation Configuration
+Help:
+  message:
+    - ''
+    - '&b&l[!] &fIf you need help make sure to join our discord server'
+    - '           &7&o(( discord.servername.com ))'
+    - ''
+Donation:
+  usage:
+    - ''
+    - '&b&lServerName &8» &7Usage &f/donation <player>'
+    - ''
+  message:
+    - ''
+    - '&b&l[!] &bThank you to &f&n%player%&b for supporting the server!'
+    - '&7&o(( Get ranks, perks, and more with &f&o/buy&7&o! ))'
+    - ''
+  trigger-gg-wave: true
+Cannot-craft-hopper: "&4&l[!] &cYou cannot craft that."
+AntiWater-Break:
+  - REDSTONE_COMPARATOR
+  - REDSTONE_COMPARATOR_OFF
+  - REDSTONE_COMPARATOR_ON
+  - REDSTONE_TORCH_OFF
+  - REDSTONE_TORCH_ON
+  - REDSTONE_WIRE
+  - DIODE
+  - DIODE_BLOCK_OFF
+  - DIODE_BLOCK_ON
+  - REDSTONE
+Death-Message: "&b&l(!) &3%player%&7(%playerkills%)&b was slain by &3%killer%&7(%killerkills%)&b!"
+Bow-Damage: "&b&l(!) &f%player% &bis currently now at &c%health% &fHP"
+Welcome-Message:
+  - '                          &fWelcome to &b&lServerName &7(Factions)'
+  - ''
+  - '                      &b&lSTORE &f&nstore.servername.com&f'
+  - '                      &f&lDISCORD &f&ndiscord.servername.com&f'
+  - '                      &b&lFORUMS &f&nforums.servername.com&f'
+  - ''
+  - '                      &b&lRECOMMENDED VERSION: &f&n1.8.8&f'
+  - ''
+  - '    &7&o(( There are currently &f&o{onlineCount} &7&o/ &f&o{maxCount} &7&oPlayers Online! )) '
+  - ''
+EnderPearl-Cooldown: "&3[!] &bYou are still on a &3EnderPearl &bcooldown for another &f%time%s"
+SpawnerCantPlace: "&4[!] &cYou cant place that block near a spawner."
+
